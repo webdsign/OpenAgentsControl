@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenAgentsControl — Install</title>
+  <!-- Maintainers: update the base URL below when a custom domain is configured. -->
+  <style>
+    :root { color-scheme: dark light; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: #111;
+      color: #eee;
+      line-height: 1.6;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; margin-top: 0; }
+    h2 { font-size: 1.05rem; margin: 2rem 0 .5rem; }
+    a { color: #6cf; }
+    pre {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 0;
+    }
+    ul { padding-left: 1.2rem; }
+    .muted { color: #999; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>OpenAgentsControl</h1>
+    <p class="muted">
+      Installer mirror — files are published from the
+      <a href="https://github.com/webdsign/OpenAgentsControl">GitHub repository</a>.
+    </p>
+
+    <h2>Install</h2>
+    <pre><code>curl -fsSL https://webdsign.github.io/OpenAgentsControl/install.sh | bash -s developer</code></pre>
+
+    <h2>Update</h2>
+    <pre><code>curl -fsSL https://webdsign.github.io/OpenAgentsControl/update.sh | bash</code></pre>
+
+    <h2>Windows (PowerShell)</h2>
+    <pre><code>Invoke-WebRequest -Uri "https://webdsign.github.io/OpenAgentsControl/install.sh" -OutFile "install.sh"</code></pre>
+
+    <h2>Files</h2>
+    <ul>
+      <li><a href="install.sh">install.sh</a></li>
+      <li><a href="update.sh">update.sh</a></li>
+      <li><a href="registry.json">registry.json</a></li>
+    </ul>
+  </main>
+</body>
+</html>

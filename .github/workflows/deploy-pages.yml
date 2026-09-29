@@ -1,0 +1,54 @@
+# Publishes this repository's files (install.sh, update.sh, registry.json,
+# .opencode/**, docs, ...) to GitHub Pages so they can be served from a
+# custom domain instead of raw.githubusercontent.com.
+#
+# Served URLs once live:  https://<custom-domain>/install.sh  etc.
+# Until a custom domain is configured the site is available at
+#   https://webdsign.github.io/OpenAgentsControl/
+#
+# One-time setup (repo Settings -> Pages):
+#   1. "Build and deployment" -> Source: "GitHub Actions"
+#   2. (later) "Custom domain": add your domain - no CNAME file is needed
+#      for Actions-based deployments, the domain is configured in Settings.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one concurrent deployment; never cancel a production deploy mid-flight
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload site files
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: '.'
+          # Required so dot-directories (.opencode/, .claude-plugin/, ...) ship.
+          # This action always excludes .git and .github regardless.
+          include-hidden-files: true
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
